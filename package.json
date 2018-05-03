@@ -49,7 +49,8 @@
   },
   "dependencies": {
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-router": "^4.2.0"
   },
   "scripts": {
     "start": "GRAPHQL_ENDPOINT=https://api.graph.cool/relay/v1/cjgq3a77a0p8l0116lha8jq4l node scripts/start.js",
@@ -81,7 +82,9 @@
     }
   },
   "babel": {
-    "plugins": ["react-relay"],
+    "plugins": [
+      "react-relay"
+    ],
     "presets": [
       "react-app"
     ]
