@@ -1,16 +1,21 @@
 import React from 'react'
-import {Route, IndexRoute} from 'react-router'
+import {Switch, Route} from 'react-router-dom'
 import Template from '../containers/Template'
+import Home from '../containers/Home'
+//import Profile from '../containers/Profile'
 
-const createRoutes = () =>
+class Routes extends React.Component
 {
-    return (
-        <Route path='/' component={Template}>
-
-        </Route>
-    )
+    render()
+    {
+        return (
+            <Template>
+                <Switch>
+                    <Route exact path='/' component={Home} />
+                </Switch>
+            </Template>
+        )
+    }
 }
-
-const Routes = createRoutes()
 
 export default Routes
