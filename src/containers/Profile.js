@@ -6,7 +6,7 @@ class Profile extends Component
     {
         return (
             <div>
-                <h1>I'm in Profile</h1>
+                <h2>Profile</h2>
             </div>
         )
     }
