@@ -7,14 +7,32 @@ import Menu from 'material-ui/svg-icons/navigation/menu'
 
 class NavDrawer extends Component
 {
+    constructor(props)
+    {
+        super(props)
+
+        this.state =
+        {
+            open: false
+        }
+    }
+
+    toggle = () =>
+    {
+        this.setState((prevState, props) =>
+        {
+            return { open: !prevState.open }
+        })
+    }
+
     render()
     {
         return (
             <div>
-                <FloatingActionButton>
+                <FloatingActionButton onTouchTap={this.toggle}>
                     <Menu />
                 </FloatingActionButton>
-                <Drawer>
+                <Drawer open={this.state.open}>
                     <div style={{height: '200px', width: '100%', backgroundColor: 'salmon'}}>
                         <h2>LoginContainer Placeholder</h2>
                     </div>
