@@ -14,6 +14,11 @@ class NavDrawer extends Component
                 <FloatingActionButton>
                     <Menu />
                 </FloatingActionButton>
+                <Drawer>
+                    <Divider />
+                    <MenuItem primaryText={'Play'} />
+                    <MenuItem primaryText={'Profile'} />
+                </Drawer>
             </div>
         )
     }
