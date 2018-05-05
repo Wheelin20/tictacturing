@@ -11,7 +11,6 @@ const StayVisible = styled.div`
 
 const NavToggleButton = (props) =>
 {
-    console.log(props)
     return (
         <StayVisible {...props} >
             <FloatingActionButton onTouchTap={props.toggle}>
