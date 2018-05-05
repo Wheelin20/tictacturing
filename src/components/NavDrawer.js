@@ -30,7 +30,7 @@ class NavDrawer extends Component
     {
         return (
             <div>
-                <NavToggleButton toggle={this.toggle} width={this.state.width} />
+                <NavToggleButton toggle={this.toggle} open={this.state.open} width={this.state.width} />
                 <Drawer open={this.state.open} width={this.state.width}>
                     <div style={{height: '200px', width: '100%', backgroundColor: 'salmon'}}>
                         <h2>LoginContainer Placeholder</h2>
