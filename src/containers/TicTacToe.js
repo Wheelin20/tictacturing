@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Stage} from 'react-konva'
 
 class TicTacToe extends Component
 {
@@ -8,13 +9,24 @@ class TicTacToe extends Component
 
         this.state =
         {
-
+            rows: 3
         }
     }
 
     componentWillMount()
     {
-        // When my component mounts
+        let height = window.innerHeight
+        let width = window.innerWidth
+        let size = height < width ? height*0.8 : width*0.8
+        let rows = this.state.rows
+        let unit = size / rows
+
+        this.setState(
+        {
+            size,
+            rows,
+            unit
+        })
     }
 
     move = () =>
@@ -41,8 +53,10 @@ class TicTacToe extends Component
     {
         return (
             <div>
-                {/* <Board /> */}
-                {/* <Squares /> */}
+                <Stage>
+                    {/* <Board /> */}
+                    {/* <Squares /> */}
+                </Stage>
             </div>
         )
     }
