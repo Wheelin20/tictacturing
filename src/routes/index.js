@@ -1,7 +1,7 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
 import Template from '../containers/Template'
-import Home from '../containers/Home'
+import TicTacToe from '../containers/TicTacToe'
 import Profile from '../containers/Profile'
 
 class Routes extends React.Component
@@ -11,7 +11,7 @@ class Routes extends React.Component
         return (
             <Template>
                 <Switch>
-                    <Route exact path='/' component={Home} />
+                    <Route exact path='/' component={TicTacToe} />
                     <Route path='/profile' component={Profile} />
                 </Switch>
             </Template>
