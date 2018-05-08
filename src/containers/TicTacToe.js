@@ -10,7 +10,14 @@ class TicTacToe extends Component
 
         this.state =
         {
-            rows: 3
+            rows: 3,
+            gameState: new Array(9).fill(false),
+            ownMark: 'X',
+            otherMark: 'O',
+            gameOver: false,
+            yourTurn: true,
+            winner: false,
+            win: false
         }
     }
 
@@ -76,9 +83,11 @@ class TicTacToe extends Component
             ownMark
         } = this.state
 
+        console.log(gameOver + " | " + this.state.gameOver)
+
         return (
             <div>
-                <Stage width={window.innerWidth} height={window.innerHeight}>
+                <Stage width={size} height={size}>
                     <Board unit={unit} rows={rows} size={size} />
                     <Squares unit={unit} coordinates={coordinates} gameState={gameState} yourTurn={yourTurn} ownMark={ownMark} move={this.move} />
                 </Stage>

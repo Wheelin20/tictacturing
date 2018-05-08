@@ -22,9 +22,37 @@ export const Board = ({unit, size, rows}) =>
 
 export const Squares = ({unit, coordinates, gameState, win, gameOver, yourTurn, ownMark, move}) =>
 {
+    let squares = coordinates.map( (position, index) =>
+    {
+        let makeMove = move
+        let mark = gameState[index]
+        let fill = 'black'
+        if (win && win.includes(index))
+        {
+            fill = 'lightgreen'
+        }
+
+        if (gameOver || !yourTurn || mark)
+        {
+            makeMove = () => 
+            {
+                console.log('mope!')
+            }
+        }
+
+        return (
+            <Text   key={index} index={index} x={position[0]} y={position[1]} fontSize={unit}
+                    width={unit} text={mark} fill={fill} fontFammily={'Helvetica'} align={'center'}
+                    onClick={(event) =>
+                    {
+                        let index = event.target.index
+                        makeMove(index, ownMark)
+                    }} />
+        )
+    })
     return (
         <Layer>
-            <Text text={"Here is the text"} />
+            {squares}
         </Layer>
     )
 }
