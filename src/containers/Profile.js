@@ -8,25 +8,48 @@ class Profile extends Component
         user: 
         {
             email: 'user@email.com',
-            game:
+            games:
             [
                 {
-                    winnder: true,
+                    winner: true,
                     createdAt: '12/25/2016',
                     id: '00001'
                 },
                 {
-                    winnder: true,
+                    winner: true,
                     createdAt: '01/01/2017',
                     id: '0002'
                 },
                 {
-                    winnder: false,
+                    winner: false,
                     createdAt: '01/11/2017',
                     id: '0003'
                 }
             ]
         }
+    }
+
+    get Records()
+    {
+        return this.props.user.games.map( (game, index) =>
+        {
+            return (
+                <GameRecord key={index} index={index}>
+                    <Column>
+                        {(game.winner) ? "Won" : "Didn't Win"}
+                    </Column>
+                    <Column>
+                        "Robot"
+                    </Column>
+                    <Column>
+                        "No"
+                    </Column>
+                    <Column>
+                        {game.createdAt}
+                    </Column>
+                </GameRecord>
+            )
+        })
     }
 
     render()
@@ -53,6 +76,7 @@ class Profile extends Component
                             Date
                         </Column>
                     </ColumnLabels>
+                    {this.Records}
                 </GameList>
             </Container>
         )
