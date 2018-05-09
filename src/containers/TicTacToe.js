@@ -60,9 +60,37 @@ class TicTacToe extends Component
         // placeholder for player move
     }
 
-    makeAiMove = () =>
+    makeAiMove = (gameState) =>
     {
-        // placeholder for Ai move
+        let otherMark = this.state.otherMark
+        let openSquares = []
+        gameState.forEach( (square, index) =>
+        {
+            if(!square)
+            {
+                openSquares.push(index)
+            }
+        })
+
+        let aiMove = openSquares[this.random(0, openSquares.length)]
+        this.move(aiMove, otherMark)
+    }
+
+    random = (min, max) =>
+    {
+        min = Math.ceil(min)
+        max = Math.floor(max)
+        return Math.floor(Math.random() * (max-min) + min)
+    }
+
+    winChecker = (gameState) =>
+    {
+        let combos = this.combos
+        return combos.find( (combo) =>
+        {
+            let [a,b,c] = combo
+            return (gameState[a] === gameState[b] && gameState[a] === gameState[c] && gameState[a])            
+        })
     }
 
     turingTest = () => 
@@ -94,7 +122,7 @@ class TicTacToe extends Component
             <div>
                 <Stage width={size} height={size}>
                     <Board unit={unit} rows={rows} size={size} />
-                    <Squares unit={unit} coordinates={coordinates} gameState={gameState} yourTurn={yourTurn} ownMark={ownMark} move={this.move} />
+                    <Squares unit={unit} coordinates={coordinates} gameState={gameState} yourTurn={yourTurn} ownMark={ownMark} move={this.move} win={win} gameOver={gameOver} />
                 </Stage>
             </div>
         )
