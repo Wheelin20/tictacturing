@@ -49,13 +49,19 @@
   },
   "dependencies": {
     "auth0-js": "^9.5.1",
+    "graphql": "^0.13.2",
     "konva": "^2.0.3",
     "material-ui": "^0.20.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-konva": "^1.7.2",
+    "react-relay": "^1.6.0",
+    "react-relay-network-layer": "^2.1.2",
+    "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-router-relay": "^0.14.0",
     "react-tap-event-plugin": "^3.0.2",
+    "relay-compiler": "^1.6.0",
     "styled-components": "^3.2.6"
   },
   "scripts": {
