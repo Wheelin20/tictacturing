@@ -1,29 +1,29 @@
 import {media} from '../utils/media'
 import styled from 'styled-components'
 
-export const Container = styled.div `
+export const Container = styled.div`
     display: flex;
-    border: 1px rgb(200, 200, 200) solid;
+    border: 1px rgb(200,200,200) solid;
     width: 800px;
     min-height: 100vh;
     flex-direction: column;
     align-items: center;
-    {$media.handheld`
-        width: 100%
+    ${media.handheld`
+    width: 100%;
     `}
 `
 
-export const Name = styled.h2 `
+export const Name = styled.h2`
     display: flex;
 `
 
-export const GameListHandler = styled.h4 `
+export const GameListHeader = styled.h4`
     display: flex;
     padding-bottom: 2px;
     margin: 10px 0 5px 0;
 `
 
-export const GameList = styled.div `
+export const GameList = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +33,7 @@ export const GameList = styled.div `
     justify-content: center;
 `
 
-export const GameRecord = styled.div `
+export const GameRecord = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -44,7 +44,7 @@ export const GameRecord = styled.div `
     box-sizing: border-box;
 `
 
-export const ColumnLables = styled.div `
+export const ColumnLabels = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -55,7 +55,7 @@ export const ColumnLables = styled.div `
     font-weight: bold;
 `
 
-export const Column = styled.span `
+export const Column = styled.span`
     display: flex;
     width: 25%;
 `
