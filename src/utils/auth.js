@@ -1,4 +1,4 @@
-import Auth0Lock from 'auth0-js'
+import Auth0Lock from 'auth0-lock'
 const authDomain = 'waldoms.auth0.com'
 const clientId = 'IXR0wr6lbltJqBAkeW2CggBkFKoYCLp5'
 
@@ -6,84 +6,83 @@ class AuthService
 {
     constructor()
     {
-        this.lock = new Auth0Lock(clientId, authDomain, 
+        this.lock = new Auth0Lock(clientId, authDomain,
         {
             auth:
             {
                 params:
                 {
-                    scope: 'openid email'
-                },
-            },
-        })
+					scope: 'openid email'
+				},
+			},
+		})
 
-        this.showLock = this.showLock.bind(this)
+		this.showLock = this.showLock.bind(this)
 
-        this.lock.on('authenticated', this.authProcess.bind(this))
-    }
+		this.lock.on('authenticated', this.authProcess.bind(this))
+	}
 
     authProcess = (authResult) =>
     {
-        console.log(authResult)
-    }
+		console.log(authResult)
+	}
 
-    showLock()
-    {
-        this.lock.show()
-    }
+	showLock() {
+		this.lock.show()
+	}
 
     setToken = (authFields) =>
     {
         let
         {
-            idToken,
-            exp
-        } = authFields
-
-        localStorage.setItem('idToken', idToken)
-        localStorage.setItem('exp', exp * 1000)
-    }
+			idToken,
+			exp
+		} = authFields
+		localStorage.setItem('idToken', idToken)
+		localStorage.setItem('exp', exp * 1000)
+	}
 
     isCurrent = () =>
     {
-        let expString = localStorage.getItem('exp')
-        if(!expString)
+		let expString = localStorage.getItem('exp')
+        if (!expString)
         {
-            localStorage.removeItem('idToken')
-            return false
-        }
-        let now = new Date()
-        let exp = new Date(parseInt(expString, 10))
-        if(exp < now)
+			localStorage.removeItem('idToken')
+			return false
+		}
+		let now = new Date()
+		let exp = new Date(parseInt(expString, 10)) //10 is radix parameter
+        if ( exp < now )
         {
-            this.logout()
-            return false
+			this.logout()
+			return false
         }
-        else
-        {
-            return true
-        }
-    }
+        else { return true }
+	}
 
     getToken()
     {
-        let idToken = localStorage.getItem('idToken')
-        if(this.isCurrent() && idToken) { return idToken }
+		let idToken = localStorage.getItem('idToken')
+        if (this.isCurrent() && idToken)
+        {
+			return idToken
+        }
         else
         {
-            localStorage.removeItem('idToken')
-            localStorage.removeItem('exp')
-            return false
-        }
-    }
+			localStorage.removeItem('idToken')
+			localStorage.removeItem('exp')
+			return false
+		}
+	}
 
-    logout()
+    logout = () =>
     {
-        localStorage.removeItem('idToken')
-        localStorage.removeItem('exp')
-        location.reload()    
-    }
+		localStorage.removeItem('idToken')
+		localStorage.removeItem('exp')
+		location.reload()
+	}
 }
 
-const auth = AuthService
+const auth = new AuthService()
+
 export default auth

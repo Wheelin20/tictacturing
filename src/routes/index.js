@@ -1,22 +1,26 @@
 import React from 'react'
-import {Switch, Route} from 'react-router-dom'
+import {Route, IndexRoute} from 'react-router'
 import Template from '../containers/Template'
 import TicTacToe from '../containers/TicTacToe'
 import Profile from '../containers/Profile'
 
-class Routes extends React.Component
-{
-    render()
-    {
-        return (
-            <Template>
-                <Switch>
-                    <Route exact path='/' component={TicTacToe} />
-                    <Route path='/profile' component={Profile} />
-                </Switch>
-            </Template>
-        )
-    }
+const createRoutes = () => {
+  return (
+    <Route
+      path='/'
+      component={Template}
+    >
+      <IndexRoute
+        component={TicTacToe}
+      />
+      <Route
+        path={'/profile'}
+        component={Profile}
+      />
+    </Route>
+  )
 }
+
+const Routes = createRoutes()
 
 export default Routes
