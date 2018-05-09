@@ -1,4 +1,4 @@
-import Auth0Lock from 'auth0-lock'
+import Auth0Lock from 'auth0-js'
 const authDomain = 'waldoms.auth0.com'
 const clientId = 'IXR0wr6lbltJqBAkeW2CggBkFKoYCLp5'
 
@@ -84,3 +84,6 @@ class AuthService
         location.reload()    
     }
 }
+
+const auth = AuthService
+export default auth
