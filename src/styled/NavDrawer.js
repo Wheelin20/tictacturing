@@ -9,8 +9,7 @@ const StayVisible = styled.div`
 	transition: margin .2s;
 `
 
-export const NavToggleButton = (props) =>
-{
+export const NavToggleButton = (props) => {
 	return (
 		<StayVisible
 			{...props}

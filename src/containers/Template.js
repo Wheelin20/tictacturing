@@ -6,23 +6,25 @@ import {Header, Main} from '../styled/Template'
 
 injectTapEventPlugin()
 
-class Template extends Component {
+class Template extends Component
+{
 
-  render() {
-    return (
-      <MuiThemeProvider>
-        <div>
-          <NavDrawer/>
-          <Header>
-            TicTacTuring
-          </Header>
-          <Main>
-            {this.props.children}
-          </Main>
-        </div>
-      </MuiThemeProvider>
-    )
-  }
+    render()
+    {
+        return (
+            <MuiThemeProvider>
+                <div>
+                    <NavDrawer/>
+                    <Header>
+                    TicTacTuring
+                    </Header>
+                    <Main>
+                    {this.props.children}
+                    </Main>
+                </div>
+            </MuiThemeProvider>
+        )
+    }
 }
 
 export default Template

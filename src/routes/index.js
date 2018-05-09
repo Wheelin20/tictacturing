@@ -6,17 +6,10 @@ import Profile from '../containers/Profile'
 
 const createRoutes = () => {
   return (
-    <Route
-      path='/'
-      component={Template}
+    <Route path='/' component={Template}
     >
-      <IndexRoute
-        component={TicTacToe}
-      />
-      <Route
-        path={'/profile'}
-        component={Profile}
-      />
+      <IndexRoute component={TicTacToe} />
+      <Route path={'/profile'} component={Profile} />
     </Route>
   )
 }

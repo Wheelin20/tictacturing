@@ -1,20 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {BrowserRouter} from 'react-router-dom'
-import Routes from './routes/index.js'
+import {Router, browserHistory, applyRouterMiddleware} from 'react-router'
+import Routes from './routes'
 import Relay from 'react-relay'
+import useRelay from 'react-router-relay'
 import {RelayNetworkLayer, urlMiddleware} from 'react-relay-network-layer'
 import {relayApi} from './config/endpoints'
 import auth from './utils/auth'
-import RenderToLayer from 'material-ui/internal/RenderToLayer';
 
 const createHeaders = () =>
 {
     let idToken = auth.getToken()
-
-    if(idToken)
+    if (idToken)
     {
-        return {Authorization: `Bearer ${idToken}`}
+        return { 'Authorization': `Bearer ${idToken}` }
     }
     else { return {} }
 }
@@ -22,22 +21,28 @@ const createHeaders = () =>
 Relay.injectNetworkLayer(
     new RelayNetworkLayer(
     [
-        urlMiddleware({url: (req) => relayApi}),
+        urlMiddleware(
+        {
+            url: (req) => relayApi,
+        }),
         next => req =>
         {
-            req.headers = 
+            req.headers =
             {
                 ...req.headers,
                 ...createHeaders()
             }
             return next(req)
         },
-    ])
+    ],{disableBatchQuery: true})
 )
 
 ReactDOM.render(
-    <BrowserRouter>
-        <Routes />
-    </BrowserRouter>,
+    <Router
+        environment={Relay.Store}
+        render={applyRouterMiddleware(useRelay)}
+        history={browserHistory}
+        routes={Routes}
+    />,
     document.getElementById('root')
 )
