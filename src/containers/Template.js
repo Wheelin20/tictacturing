@@ -15,12 +15,12 @@ class Template extends Component
         return (
             <MuiThemeProvider>
                 <div>
-                    <NavDrawer/>
+                    <NavDrawer auth={this.props.route.auth} authenticated={this.props.viewer.user} />
                     <Header>
-                    TicTacTuring
+                        TicTacTuring
                     </Header>
                     <Main>
-                    {this.props.children}
+                        {this.props.children}
                     </Main>
                 </div>
             </MuiThemeProvider>

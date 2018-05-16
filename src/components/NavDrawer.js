@@ -4,6 +4,7 @@ import MenuItem from 'material-ui/MenuItem'
 import Divider from 'material-ui/Divider'
 import {Link} from 'react-router'
 import {NavToggleButton} from '../styled/NavDrawer'
+import AuthButton from './AuthButton'
 
 class NavDrawer extends Component {
     state = {
@@ -20,6 +21,8 @@ class NavDrawer extends Component {
     }
 
     render() {
+        console.log("NavDrawer: ")
+        console.log(this.props)
       return (
         <div>
           <NavToggleButton
@@ -31,15 +34,7 @@ class NavDrawer extends Component {
             open={this.state.open}
             width={this.state.width}
           >
-            <div
-              style={{
-                height: '200px',
-                width: '100%',
-                backgroundColor: 'salmon'
-              }}
-            >
-              LoginContainer
-            </div>
+            <AuthButton auth={this.props.auth} authenticated={this.props.authenticated}  />
             <Divider/>
             <Link
               to={'/'}
