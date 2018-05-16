@@ -20,9 +20,8 @@ class NavDrawer extends Component {
       })
     }
 
-    render() {
-        console.log("NavDrawer: ")
-        console.log(this.props)
+    render()
+    {
       return (
         <div>
           <NavToggleButton
@@ -34,7 +33,7 @@ class NavDrawer extends Component {
             open={this.state.open}
             width={this.state.width}
           >
-            <AuthButton auth={this.props.auth} authenticated={this.props.authenticated}  />
+            <AuthButton authenticated={this.props.authenticated}  />
             <Divider/>
             <Link
               to={'/'}

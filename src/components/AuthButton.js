@@ -7,13 +7,13 @@ const AuthButton = (props) =>
     if(props.authenticated)
     {
         return(
-            <RaisedButton label='Logout' onTouchTap={props.auth.logout} fullWidth={true} secondary={true} />
+            <RaisedButton label='Logout'  fullWidth={true} secondary={true} />
         )
     }
     else
     {
         return (
-            <RaisedButton label='Login / Signup' onTouchTap={props.auth.logout} fullWidth={true} secondary={true} />
+            <RaisedButton label='Login / Signup' fullWidth={true} secondary={true} />
         )
     }
 }
