@@ -50,7 +50,7 @@ export default class CreateUser extends Relay.Mutation
                 children:
                 [
                     Relay.QL`
-                        frangment on CreateUserPayload
+                        fragment on CreateUserPayload
                         {
                             user
                         }
