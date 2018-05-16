@@ -1,6 +1,9 @@
 import Auth0Lock from 'auth0-lock'
+import Relay from 'react-relay'
 const authDomain = 'waldoms.auth0.com'
 const clientId = 'IXR0wr6lbltJqBAkeW2CggBkFKoYCLp5'
+import CreateUser from '../mutations/CreateUser'
+import SigninUser from '../mutations/SigninUser'
 
 class AuthService
 {
@@ -24,7 +27,28 @@ class AuthService
 
     authProcess = (authResult) =>
     {
-		console.log(authResult)
+        let
+        {
+            email,
+            exp
+        } = authResult.idtokenPayload
+
+        const idToken = authResult.idToken
+
+        this.signinUser(
+        {
+            idToken,
+            email,
+            exp
+        }).then(success => success, rejected =>
+        {
+            this.createUser(
+            {
+                idToken,
+                email,
+                exp
+            }).then()
+        })
 	}
 
 	showLock() {
@@ -80,7 +104,53 @@ class AuthService
 		localStorage.removeItem('idToken')
 		localStorage.removeItem('exp')
 		location.reload()
-	}
+    }
+    
+    createUser = (authFields) =>
+    {
+        return new Promise( (resolve, reject) => 
+        {
+            Relay.Store.commitUpdate(new CreateUser(
+            {
+                email: authFields.email,
+                idToken: authFields.idToken
+            }),
+            {
+                onSuccess: (response) =>
+                {
+                    this.signinUser(authFields)
+                    resolve(response)
+                },
+                onFailure: (response) =>
+                {
+                    console.log('CreateUser error', response)
+                    reject(response)
+                }
+            })
+        })
+    }
+
+    signinUser = (authFields) =>
+    {
+        return new Promise( (resolve, reject) =>
+        {
+            Relay.Store.commitUpdate(new SigninUser(
+            {
+                idToken: authFields.idToken
+            }),
+            {
+                onsuccess: (response) =>
+                {
+                    this.setToken(authFields)
+                    resolve(response)
+                },
+                onFailure: (response) =>
+                {
+                    reject(response)
+                }
+            })
+        })
+    }
 }
 
 const auth = new AuthService()
